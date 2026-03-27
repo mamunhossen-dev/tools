@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+	  Website: Mamun's Tool Hub
+	  Author: Mamun Hossen
+	  Copyright © 2026 Mamun Hossen. All rights reserved.
+	  GitHub: https://github.com/mamunhossen-dev
+	-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamun's Tool Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --dark: #1e1e2d;
+            --dark-light: #2b2b40;
+            --accent: #00d2ff;
+            --text-muted: #a0a5ba;
+            --bg: #f0f2f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--bg);
+            color: #333;
+        }
+
+        /* Sidebar Design */
+        .sidebar {
+            width: 280px;
+            background: var(--dark);
+            color: #fff;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 0 auto 15px auto;
+            border: 3px solid var(--accent);
+            background-image: url('Mamun 300X300.jpg'); /* Update with your ID */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-section p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-menu li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-menu li i { font-size: 1.1rem; }
+
+        .nav-menu li:hover, .nav-menu li.active {
+            background: var(--dark-light);
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        /* Sidebar Footer */
+        .sidebar-footer {
+            padding-top: 20px;
+            border-top: 1px solid #2b2b40;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .social-links { margin-bottom: 10px; }
+        .social-links a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px;
+        }
+
+        .header-top {
+            margin-bottom: 40px;
+        }
+
+        .header-top h1 {
+            font-size: 2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .tool-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eef0f5;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            height: 55px;
+            width: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f4f6f9;
+            border-radius: 12px;
+            color: var(--dark);
+        }
+
+        .tool-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .tool-card p {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .launch-btn {
+            background: var(--dark);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .tool-card:hover .launch-btn {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .sidebar { width: 240px; }
+            .main-content { margin-left: 240px; }
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 20px;
+            }
+            .main-content { margin-left: 0; padding: 25px; }
+            .nav-menu {
+                display: flex;
+                overflow-x: auto;
+                gap: 10px;
+                padding-bottom: 10px;
+            }
+            .nav-menu li { white-space: nowrap; margin-bottom: 0; }
+            .profile-section { margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="profile-section">
+            <div class="profile-img"></div>
+            <h2>Md. Mamun Hossen</h2>
+            <p>BIM Modeler & MERN stack developer</p>
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="active" onclick="filterTools('all', this)">
+                <i class="fa-solid fa-border-all"></i> All Tools
+            </li>
+            <li onclick="filterTools('civil', this)">
+                <i class="fa-solid fa-helmet-safety"></i> Civil & Construction
+            </li>
+            <li onclick="filterTools('finance', this)">
+                <i class="fa-solid fa-wallet"></i> Finance & HR
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="social-links">
+                <a href="https://github.com/mamunhossen-dev" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com/in/mamun1" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="header-top">
+            <h1>Workspace Tools</h1>
+        </div>
+
+        <div class="tools-grid" id="toolsContainer">
+            <div class="tool-card" data-category="civil">
+                <div class="tool-icon"><i class="fa-regular fa-gem"></i></div>
+                <h3>Brick & Mortar</h3>
+                <p>Advanced estimator for bricks, mortar, and plaster requirements for any wall size.</p>
+                <a href="https://mamunhossen-dev.github.io/brick-mortar-plaster-calculator" class="launch-btn" target="_blank">Launch App</a>
+            </div>
+
+            <div class="tool-card" data-category="civil">
+                <div class="tool-icon"><i class="fa-regular fa-circle"></i></div>
+                <h3>Circular Tank</h3>
+                <p>Calculate precise brickwork volume and material for circular water tanks.</p>
+                <a href="https://mamunhossen-dev.github.io/Circular-Tank-Masonry-Estimator" class="launch-btn" target="_blank">Launch App</a>
+            </div>
+
+            <div class="tool-card" data-category="finance">
+                <div class="tool-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <h3>Salary Calc</h3>
+                <p>Complete breakdown of gross salary, provident fund, and monthly take-home pay.</p>
+                <a href="https://mamunhossen-dev.github.io/salary-calculator" class="launch-btn" target="_blank">Launch App</a>
+            </div>
+
+            <div class="tool-card" data-category="finance">
+                <div class="tool-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Increment Tool</h3>
+                <p>Plan your career growth by calculating yearly or performance-based increments.</p>
+                <a href="https://mamunhossen-dev.github.io/increment-calculator" class="launch-btn" target="_blank">Launch App</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function filterTools(category, element) {
+            // Update active state in menu
+            const menuItems = document.querySelectorAll('.nav-menu li');
+            menuItems.forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            // Filter cards with a small animation delay
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                card.style.display = 'none';
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
