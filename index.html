@@ -61,7 +61,7 @@
             background: #fff;
             margin: 0 auto 15px auto;
             border: 3px solid var(--accent);
-            background-image: url('Mamun 300X300.jpg'); /* Update with your ID */
+            background-image: url('Mamun 300X300.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -258,8 +258,8 @@
             <li onclick="filterTools('finance', this)">
                 <i class="fa-solid fa-wallet"></i> Finance & HR
             </li>
-			<li onclick="filterTools('others', this)">
-                <i class="fa-solid fa-wallet"></i> Others
+            <li onclick="filterTools('others', this)">
+                <i class="fa-solid fa-shapes"></i> Others
             </li>
         </ul>
 
@@ -276,14 +276,16 @@
             <h1>Workspace Tools</h1>
         </div>
 
-        <div class="tool-card" data-category="finance">
+        <!-- ✅ FIX: All cards are now inside tools-grid so layout and filtering work correctly -->
+        <div class="tools-grid" id="toolsContainer">
+
+            <div class="tool-card" data-category="finance">
                 <div class="tool-icon"><i class="fa-solid fa-bangladeshi-taka-sign"></i></div>
                 <h3>JomaKhoros</h3>
-                <p>Complete Personal Finance Manegement System</p>
+                <p>Complete Personal Finance Management System</p>
                 <a href="https://jomakhoros.lovable.app/" class="launch-btn" target="_blank">Launch App</a>
             </div>
-		
-		<div class="tools-grid" id="toolsContainer">
+
             <div class="tool-card" data-category="civil">
                 <div class="tool-icon"><i class="fa-regular fa-gem"></i></div>
                 <h3>Brick & Mortar</h3>
@@ -291,21 +293,20 @@
                 <a href="https://mamunhossen-dev.github.io/brick-mortar-plaster-calculator" class="launch-btn" target="_blank">Launch App</a>
             </div>
 
-			<div class="tool-card" data-category="others">
+            <div class="tool-card" data-category="others">
                 <div class="tool-icon"><i class="fa-solid fa-drumstick-bite"></i></div>
                 <h3>Meat Calculator</h3>
-                <p>Calculate net wight of meat 
-					animals buying.</p>
+                <p>Calculate net weight of meat animals buying.</p>
                 <a href="https://meat-calculator.vercel.app/" class="launch-btn" target="_blank">Launch App</a>
             </div>
-			
-			<div class="tool-card" data-category="others">
+
+            <div class="tool-card" data-category="others">
                 <div class="tool-icon"><i class="fa-regular fa-lightbulb"></i></div>
                 <h3>Unit Calculator</h3>
                 <p>Calculate electricity usage and costs by calculating kWh based on an appliance's power rating, daily hours of usage, and cost per unit.</p>
                 <a href="https://electric-unit-calculator.vercel.app/" class="launch-btn" target="_blank">Launch App</a>
             </div>
-			
+
             <div class="tool-card" data-category="finance">
                 <div class="tool-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                 <h3>Salary Calculator</h3>
@@ -319,17 +320,16 @@
                 <p>Know your increment and generate a full salary structure including bonuses and deductions automatically.</p>
                 <a href="https://mamunhossen-dev.github.io/increment-calculator" class="launch-btn" target="_blank">Launch App</a>
             </div>
+
         </div>
     </main>
 
     <script>
         function filterTools(category, element) {
-            // Update active state in menu
             const menuItems = document.querySelectorAll('.nav-menu li');
             menuItems.forEach(item => item.classList.remove('active'));
             element.classList.add('active');
 
-            // Filter cards with a small animation delay
             const cards = document.querySelectorAll('.tool-card');
             cards.forEach(card => {
                 card.style.display = 'none';
